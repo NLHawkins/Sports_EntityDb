@@ -8,23 +8,64 @@ namespace CU_Baseball_Stat_Modeler
 {
     class Program
     {
-
+        public static void ToTeam(string teamNamestring)
+        {
+            var team = new Team
+            {
+                SchoolName = teamNamestring
+            };
+        }
 
         static void Main(string[] args)
         {
             using(var db = new BaseballStatContext())
             {
+                Console.WriteLine("Create a new Player");
+                Console.WriteLine("What is the name of your Player?");
+                var playerName = Console.ReadLine();
+                Console.WriteLine("What School is your Player from?");
+                var playerTeam = (Console.ReadLine());
+                ToTeam(playerTeam);
+                Console.WriteLine("What Number is the Player on your Team");
+                var playerNumber = int.Parse(Console.ReadLine());
+
+                var userPlayer = new Player
+                {
+                    Name = playerName,                  
+                    Number = playerNumber
+                };
+
+                db.Players.Add(userPlayer);
+                db.SaveChanges();
+
+                /*var teamOpp = new bool();
+                teamOpp = db.Teams.Any(playerTeam);
+                var teamMatch = db.Teams.Find(teamName);
+                if (teamMatch = teamName)
+                {
+                    var professorNames = (from p in context.Professors
+                                          select p.Name).ToList();
+
+                    foreach (var name in professorNames)
+                    {
+                        Console.WriteLine(name);
+
+                    }
+
                 Console.WriteLine("Would you Like to Create a (T)eam, a (P)layer, or a (S)tat Sheet");
                 var objectChoice = Console.ReadLine();
                 if(objectChoice.ToLower() == "t")
                 {
                     CreateTeam();
                 }
-
+*/
             }
         }
 
-        private static void CreateTeam()
+
+       
+
+   /*      private static void CreateTeam()
         {
                 Console.WriteLine("What is the School Name of your team?");
                 var teamName = Console.ReadLine();
@@ -67,6 +108,6 @@ namespace CU_Baseball_Stat_Modeler
         {
             Console.WriteLine("Which team [team Id] is your Player a part of?");
             Console.WriteLine();
-        }
+        }*/
     }
 }
